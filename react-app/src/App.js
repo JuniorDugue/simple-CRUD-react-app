@@ -16,7 +16,7 @@ localStorage.setItem('products', JSON.stringify(products));
 
 class App extends Component {
   componentWillMount() {
-    const products = localStorage.getItem('products');
+    const products = JSON.parse(localStorage.getItem('products'));
 
     console.log(products)
   }
