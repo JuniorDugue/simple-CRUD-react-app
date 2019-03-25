@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const products = [
@@ -17,7 +16,9 @@ localStorage.setItem('products', JSON.stringify(products));
 
 class App extends Component {
   componentWillMount() {
-    localStorage.getItem('products');
+    const products = localStorage.getItem('products');
+
+    console.log(products)
   }
 
   render() {
