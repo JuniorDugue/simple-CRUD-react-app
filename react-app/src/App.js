@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import ProductItem from './Components/ProductItem';
+
 const products = [
   {
    name: 'iPad',
@@ -9,6 +11,10 @@ const products = [
   {
     name: 'iPhone',
     price: 650
+  },
+  {
+    name: 'iPod',
+    price: 75
   }
 ];
 
@@ -17,7 +23,7 @@ localStorage.setItem('products', JSON.stringify(products));
 class App extends Component {
   constructor(props){
     super(props);
-
+  
     this.state = {
       products: []
     };
@@ -25,32 +31,29 @@ class App extends Component {
   componentWillMount() {
     this.getProducts();
   }
-
+  
   getProducts() {
     const products = JSON.parse(localStorage.getItem('products'));
-
+  
     this.setState({ products });
   }
 
   render() {
     return (
-      <div className="App">
+      <div>
         <h1>Products Manager</h1>
-
         {
           this.state.products.map(product => {
             return (
-              <div key={product.name}>
-                <span>{product.name}</span>
-                 {` | `} 
-                <span>{product.price}</span>
-                 {` | `}
-                 <button>Delete</button>
-              </div>
-            )
+              <ProductItem 
+                key={product.name}
+                name={product.name}
+                price={product.price}
+              />
+            );
           })
         }
-      </div>
+      </div>   
     );
   }
 }
